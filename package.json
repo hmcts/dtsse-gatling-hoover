@@ -1,0 +1,15 @@
+{
+  "name": "rse-ccd-diff",
+  "version": "1.0.0",
+  "description": "Diff CCD files",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HMCTS",
+  "license": "MIT",
+  "dependencies": {
+    "diff-json": "^2.0.0"
+  }
+}
