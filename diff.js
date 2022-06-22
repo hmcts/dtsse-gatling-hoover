@@ -7,6 +7,9 @@ const removeBlacklistedKeys = field => {
   );
 };
 
+const ensureKeys = keys => row =>
+  keys.reduce((row, key) => ({ [key]: '', ...row }), row);
+
 const groupBy = (values, getId) => values.reduce((result, value) => {
   result[getId(value)] = value;
 
@@ -17,11 +20,16 @@ const hasFieldChanged = (obj1, obj2) => Object
   .keys(obj1)
   .some(key => obj1[key] !== obj2[key]);
 
-const getDiff = ([filename, masterFile, branchFile, getFieldId]) => {
-  const masterContent = masterFile.map(removeBlacklistedKeys);
-  const branchContent = branchFile.map(removeBlacklistedKeys);
-  const masterFields = groupBy(masterContent, getFieldId);
-  const branchFields = groupBy(branchContent, getFieldId);
+const getDiff = ([filename, masterDef, branchDef, getFieldId]) => {
+  const masterWithoutBlacklistedKeys = masterDef.map(removeBlacklistedKeys);
+  const branchWithoutBlacklistedKeys = branchDef.map(removeBlacklistedKeys);
+  const masterKeys = masterWithoutBlacklistedKeys.reduce((keys, item) => ({ ...keys, ...item }), {});
+  const masterAndBranchKeys = masterWithoutBlacklistedKeys.reduce((keys, item) => ({ ...keys, ...item }), masterKeys);
+  const keys = Object.keys(masterAndBranchKeys);
+  const masterWithConsistentKeys = masterWithoutBlacklistedKeys.map(ensureKeys(keys));
+  const branchWithConsistentKeys = branchWithoutBlacklistedKeys.map(ensureKeys(keys));
+  const masterFields = groupBy(masterWithConsistentKeys, getFieldId);
+  const branchFields = groupBy(branchWithConsistentKeys, getFieldId);
   const masterFieldKeys = Object.keys(masterFields);
   const branchFieldKeys = Object.keys(branchFields);
 
