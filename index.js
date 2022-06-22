@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { generateFileReport } = require('./markdown');
 const { getDiff } = require('./diff');
 const { resolveFiles } = require('./fs');
