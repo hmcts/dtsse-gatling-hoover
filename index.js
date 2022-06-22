@@ -8,6 +8,8 @@ const [_, __, arg1, arg2] = process.argv;
 const masterDir = __dirname + '/' + arg1 + '/';
 const branchDir = __dirname + '/' + arg2 + '/';
 
+console.log(process.argv);
+
 const fileFieldId = {
   '**/AuthorisationCaseState.json': field => `${field.CaseStateID}:${field.UserRole}`,
   '**/AuthorisationCaseType.json': field => field.UserRole,
