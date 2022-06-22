@@ -13,53 +13,131 @@ npx -q @hmcts/ccd-diff [pathToBaseCCDJson] [pathToBranchCCDJson]
 
 The only output format supported at the moment is markdown:
 
-### AuthorisationCaseState.json
-
-
-#### 2 removed
-|CRUD|CaseStateID|UserRole|
-|---|---|---|
-|CRUD|Rejected|caseworker-divorce-systemupdate|
-|CRUD|Withdrawn|caseworker-divorce-systemupdate|
-
-
-#### 1 changed
+### AuthorisationCaseField/APPLICANTTWO.json
 <table>
 <thead>
   <tr>
-    <th>CRUD</th><th>CaseStateID</th><th>UserRole</th>
+    <th>CRUD</th><th>CaseFieldID</th><th>UserRole</th>
   </tr>
 </thead>
+
 <tr><td>
 
-```diff 
--CRU 
-+CRUD
+```diff
+-CRU
 ```
 
 </td><td>
 
-AosDrafted
+```diff
+-applicant2ConfirmReceipt
+```
 
 </td><td>
 
-caseworker-divorce-courtadmin-la
+```diff
+-[APPLICANTTWO]
+```
+
+</td></tr><tr><td>
+
+```diff
+-CRU
+```
+
+</td><td>
+
+```diff
+-applicant2ContinueApplication
+```
+
+</td><td>
+
+```diff
+-[APPLICANTTWO]
+```
+
+</td></tr><tr><td>
+
+```diff
++CRU
+```
+
+</td><td>
+
+```diff
++-Applicant2PrayerFinancialOrdersChild
+```
+
+</td><td>
+
+```diff
++[APPLICANTTWO]
+```
+
+</td></tr>
+<tr><td>
+
+```diff 
+-CRU 
++R
+```
+
+</td><td>
+
+applicant2Address
+
+</td><td>
+
+[APPLICANTTWO]
+
+</td></tr><tr><td>
+
+```diff 
+-CRU 
++R
+```
+
+</td><td>
+
+applicant2AgreedToReceiveEmails
+
+</td><td>
+
+[APPLICANTTWO]
 
 </td></tr>
 </table>
 
-### CaseField.json
+### AuthorisationCaseField/APPTWOSOLICITOR.json
+<table>
+<thead>
+  <tr>
+    <th>CRUD</th><th>CaseFieldID</th><th>UserRole</th>
+  </tr>
+</thead>
 
-#### 1 added
-|FieldType|ID|Label|
-|---|---|---|
-|DateAndHour|dateAndHour|Date and hour?|
+<tr><td>
 
+```diff
+-CRU
+```
 
-#### 1 removed
-|FieldType|ID|Label|
-|---|---|---|
-|DivorceDocument|coConditionalOrderGrantedDocument|Conditional Order Granted|
+</td><td>
+
+```diff
+-applicant2ConfirmReceipt
+```
+
+</td><td>
+
+```diff
+-[APPTWOSOLICITOR]
+```
+
+</td></tr>
+</table>
+
 
 ## Use on PRs
 

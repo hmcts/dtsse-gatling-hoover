@@ -4,10 +4,6 @@ const { generateFileReport } = require('./markdown');
 const { getDiff } = require('./diff');
 const { resolveFiles } = require('./fs');
 
-const [_, __, arg1, arg2] = process.argv;
-const masterDir = process.cwd() + '/' + arg1 + '/';
-const branchDir = process.cwd() + '/' + arg2 + '/';
-
 const fileFieldId = {
   '**/AuthorisationCaseState.json': field => `${field.CaseStateID}:${field.UserRole}`,
   '**/AuthorisationCaseType.json': field => field.UserRole,
@@ -30,7 +26,7 @@ const fileFieldId = {
 
 const output = Object
   .entries(fileFieldId)
-  .flatMap(resolveFiles(masterDir, branchDir))
+  .flatMap(resolveFiles)
   .map(getDiff)
   .filter(diff => diff.additions.length + diff.removals.length + diff.changes.length > 0)
   .map(generateFileReport)

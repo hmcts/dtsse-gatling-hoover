@@ -1,4 +1,3 @@
-const {getFilename} = require('./fs');
 
 const blacklistedKeys = ['LiveFrom', 'SecurityClassification', 'CaseTypeID'];
 
@@ -18,9 +17,9 @@ const hasFieldChanged = (obj1, obj2) => Object
   .keys(obj1)
   .some(key => obj1[key] !== obj2[key]);
 
-const getDiff = ([masterFile, branchFile, getFieldId]) => {
-  const masterContent = require(masterFile).map(removeBlacklistedKeys);
-  const branchContent = require(branchFile).map(removeBlacklistedKeys);
+const getDiff = ([filename, masterFile, branchFile, getFieldId]) => {
+  const masterContent = masterFile.map(removeBlacklistedKeys);
+  const branchContent = branchFile.map(removeBlacklistedKeys);
   const masterFields = groupBy(masterContent, getFieldId);
   const branchFields = groupBy(branchContent, getFieldId);
   const masterFieldKeys = Object.keys(masterFields);
@@ -32,7 +31,7 @@ const getDiff = ([masterFile, branchFile, getFieldId]) => {
     .filter(key => branchFields[key] && hasFieldChanged(masterFields[key], branchFields[key]))
     .map(key => ({ oldValue: masterFields[key], newValue: branchFields[key]}));
 
-  return { file: getFilename(masterFile), additions, removals, changes };
+  return { file: filename, additions, removals, changes };
 };
 
 module.exports = { getDiff };

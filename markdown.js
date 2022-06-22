@@ -1,25 +1,20 @@
 
-const getAdditionsOrRemovals = (diff, title) => {
-  if (diff.length === 0) {
-    return '';
-  }
+const getCell = (value, prefix) =>
+  '<td>\n\n```diff\n' + prefix + value + '\n```\n\n</td>';
 
-  const keys = Object.keys(diff[0] || []);
-  const rows = diff.map(row => '|' + Object.values(row).join('|')).join('|\n');
+const getRow = (row, prefix) =>
+  Object
+    .values(row)
+    .map(value => getCell(value, prefix))
+    .join('');
 
-  return `
-#### ${diff.length} ${title}
-|${keys.join('|')}|
-|${keys.map(() => '---').join('|')}|
-${rows}|
-`;
-};
+const getAdditionsOrRemovals = (diff, prefix) =>
+  diff
+    .map(row => getRow(row, prefix))
+    .map(tableRow => `<tr>${tableRow}</tr>`)
+    .join('');
 
 const getChanges = diff => {
-  if (diff.length === 0) {
-    return '';
-  }
-
   const keys = Object.keys(diff[0]?.oldValue || []);
   const rows = diff.map(row => keys.map(key => {
     const content = row.oldValue[key] === row.newValue[key]
@@ -29,25 +24,25 @@ const getChanges = diff => {
     return `<td>\n\n${content}\n\n</td>`;
   }).join(''));
 
+  return rows.map(row => `<tr>${row}</tr>`).join('');
+};
+
+const generateFileReport = ({ file, additions, removals, changes }) => {
+  const keys = Object.keys(additions[0] || removals[0] || changes[0].oldValue);
+
   return `
-#### ${diff.length} changed
+### ${file}
 <table>
 <thead>
   <tr>
     ${keys.map(key => `<th>${key}</th>`).join('')}
   </tr>
 </thead>
-${rows.map(row => `<tr>${row}</tr>`).join('')}
+${getAdditionsOrRemovals(additions, '+')}
+${getAdditionsOrRemovals(removals, '-')}
+${getChanges(changes)}
 </table>
 `;
-};
-
-const generateFileReport = ({ file, additions, removals, changes }) => {
-  return `
-### ${file}
-${getAdditionsOrRemovals(additions, 'added')}
-${getAdditionsOrRemovals(removals, 'removed')}
-${getChanges(changes)}`;
 };
 
 module.exports = { generateFileReport };
