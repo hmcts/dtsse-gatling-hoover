@@ -5,6 +5,8 @@ Tool to diff CCD changes.
 ## Usage
 ```bash
 npm start [pathToBaseCCDJson] [pathToBranchCCDJson]
+# or with npx
+npx -q @hmcts/ccd-diff [pathToBaseCCDJson] [pathToBranchCCDJson]
 ```
 
 ## Output
