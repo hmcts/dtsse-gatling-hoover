@@ -19,7 +19,13 @@ const fileFieldId = {
   'State/State.json': field => field.ID,
   '**/WorkBasketInputFields.json': field => field.CaseFieldID,
   '**/WorkBasketResultFields.json': field => field.CaseFieldID,
-  '**/AuthorisationCaseEvent.json': field => `${field.CaseEventID}:${field.UserRole}`
+  '**/AuthorisationCaseEvent.json': field => `${field.CaseEventID}:${field.UserRole}`,
+  'AuthorisationCaseField/*.json': field => `${field.CaseFieldID}:${field.UserRole}`,
+  'CaseEvent/*.json': field => field.ID,
+  'ComplexTypes/*.json': field => `${field.ID}:${field.ListElementCode}`,
+  'CaseEventToFields/*.json': field => `${field.CaseFieldID}:${field.CaseEventID}`,
+  'CaseTypeTab/*.json': field => `${field.TabID}:${field.CaseFieldID}:${field.UserRole}`,
+  'FixedLists/*.json': field => `${field.ID}:${field.ListElementCode}`
 };
 
 const output = Object
