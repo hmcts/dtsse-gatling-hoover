@@ -1,15 +1,22 @@
 {
-  "name": "rse-ccd-diff",
+  "name": "@hmcts/ccd-diff",
   "version": "1.0.0",
   "description": "Diff CCD files",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
   "author": "HMCTS",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hmcts/rse-ccd-diff.git"
+  },
   "dependencies": {
-    "diff-json": "^2.0.0"
+    "glob": "^8.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0"
   }
 }
