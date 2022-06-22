@@ -31,7 +31,7 @@ const output = Object
   .join('');
 
 if (output === '') {
-  console.log('No change')
+  console.log('No change');
 } else {
   console.log(output);
 }
