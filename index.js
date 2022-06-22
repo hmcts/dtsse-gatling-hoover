@@ -26,8 +26,13 @@ const output = Object
   .entries(fileFieldId)
   .flatMap(resolveFiles(masterDir, branchDir))
   .map(getDiff)
+  .filter(diff => diff.additions.length + diff.removals.length + diff.changes.length > 0)
   .map(generateFileReport)
   .join('');
 
-console.log(output);
+if (output === '') {
+  console.log('No change')
+} else {
+  console.log(output);
+}
 
