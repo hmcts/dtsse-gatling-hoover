@@ -83,7 +83,7 @@ You can add a report to a PR with CCD changes by adding:
       - name: Generate report
         id: ccd-diff
         run: |
-          REPORT="$(npx --silent @hmcts/ccd-diff build/master build/branch)"
+          REPORT="$(npx -q @hmcts/ccd-diff build/master build/branch)"
           REPORT="${REPORT//'%'/'%25'}"
           REPORT="${REPORT//$'\n'/'%0A'}"
           REPORT="${REPORT//$'\r'/'%0D'}"
