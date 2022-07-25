@@ -1,5 +1,5 @@
 
-const blacklistedKeys = ['LiveFrom', 'SecurityClassification', 'CaseTypeID'];
+const blacklistedKeys = ['LiveFrom', 'SecurityClassification', 'CaseTypeID', 'DisplayOrder'];
 
 const removeBlacklistedKeys = field => {
   return Object.fromEntries(
