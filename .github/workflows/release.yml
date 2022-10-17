@@ -1,12 +1,15 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'master'
 
 jobs:
-  build:
+  bump-version:
+    name: 'Bump Version on master'
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -14,6 +17,16 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: yarn
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: cat ./package.json
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
       - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_api_token }}
