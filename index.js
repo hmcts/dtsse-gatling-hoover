@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const CosmosClient = require('@azure/cosmos').CosmosClient;
 const { statSync, readdirSync, existsSync } = require('fs');
 
