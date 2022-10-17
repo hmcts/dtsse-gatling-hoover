@@ -6,7 +6,11 @@ const { statSync, readdirSync, existsSync } = require('fs');
 const client = new CosmosClient({ endpoint: 'https://pipeline-metrics.documents.azure.com:443/', key: process.env.COSMOS_KEY });
 const database = client.database('jenkins');
 const container = database.container('performance-metrics');
-const baseDir = process.argv[2] || __dirname;
+const baseDir = process.argv[2]
+  ? process.argv[2].startsWith('/')
+    ? process.argv[2]
+    : `${process.cwd()}/${process.argv[2]}`
+  : process.cwd();
 
 const run = async () => {
   const dirName = baseDir.split('/').reverse().find(dir => dir !== '');
