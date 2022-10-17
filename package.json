@@ -1,24 +1,25 @@
 {
-  "name": "@hmcts/ccd-diff",
+  "name": "@hmcts/gatling-hoover",
   "private": false,
-  "version": "1.2.2",
-  "description": "Diff CCD files",
+  "version": "1.0.0",
+  "description": "Upload gatling reports to Cosmos DB",
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "eslint ."
+    "test": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "author": "HMCTS",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:hmcts/rse-ccd-diff.git"
+    "url": "git@github.com:hmcts/dtsse-gatling-hoover.git"
   },
   "dependencies": {
-    "glob": "^8.0.3"
+    "@azure/cosmos": "3.17.1"
   },
   "devDependencies": {
-    "eslint": "^8.20.0"
+    "eslint": "8.25.0"
   }
 }
