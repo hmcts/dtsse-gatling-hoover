@@ -1,4 +1,4 @@
-name: Publish
+name: Release
 
 on:
   release:
@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish --access public
+      - run: yarn
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_api_token }}
