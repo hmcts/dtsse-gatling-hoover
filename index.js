@@ -26,7 +26,7 @@ const run = async () => {
     'build_tag': '',
     'component': rest.join('-'),
     'environment': 'perftest',
-    'job_name': dirName,
+    'job_name': `hmcts/${dirName}/master`,
     'build_id': reportId,
     'branch_name': 'N/A',
     'build_number': reportId,
