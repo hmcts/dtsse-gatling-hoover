@@ -20,6 +20,6 @@
     "@azure/cosmos": "3.17.3"
   },
   "devDependencies": {
-    "eslint": "8.35.0"
+    "eslint": "8.36.0"
   }
 }
