@@ -17,7 +17,7 @@
     "url": "git@github.com:hmcts/dtsse-gatling-hoover.git"
   },
   "dependencies": {
-    "@azure/cosmos": "3.17.3"
+    "@azure/cosmos": "4.0.0"
   },
   "devDependencies": {
     "eslint": "8.42.0"
